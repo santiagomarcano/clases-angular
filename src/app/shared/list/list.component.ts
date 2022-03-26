@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -6,15 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  title: string = 'Bienvenido a la web';
-  today: Date = new Date('01-01-2019');
+  @Input() dates: Date[] = [];
+  @Output() onClickDate = new EventEmitter();
 
-  dates: Date[] = [
-    new Date('01-01-2019'),
-    new Date('01-01-2020'),
-    new Date('01-01-2021'),
-    new Date('01-01-2022'),
-  ];
+  title: string = 'Bienvenido a la web';
+  title2: any = 'NgModel';
+  today: Date = new Date();
+  placeholder: string = 'One way';
 
   constructor() {}
 
@@ -23,7 +21,13 @@ export class ListComponent implements OnInit {
     this.title = 'Datos recibidos....';
   }
 
-  handleClick(): void {
+  handleClick(i: any): void {
+    this.onClickDate.emit(i);
     this.title = Math.random().toString();
+  }
+
+  handleChange(): void {
+    console.log('E');
+    // this.title = e.target.value;
   }
 }

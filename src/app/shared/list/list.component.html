@@ -1,4 +1,6 @@
 <h1>{{title | uppercase}}</h1>
+<h1>{{title2 | uppercase}}</h1>
+
 <!-- <h2>{{ today | date:'w' }}</h2> -->
 
 <!-- ngFor, ngIf -->
@@ -6,6 +8,9 @@
 <ul>
     <li *ngFor="let item of dates">
         <span>{{ item | date:'short' }}</span>
+        <button (click)="handleClick($event)">Click</button>
     </li>
-    <button (click)="handleClick()">Click</button>
+    <input (input)='handleChange()' [value]="title" [placeholder]="placeholder" />
+    <input [(ngModel)]='title2' type='text' placeholder="Two way" />
+
 </ul>
